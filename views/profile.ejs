@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/profile.css">
+    <title>Profile</title>
+</head>
+<body>
+
+    <h1>Welcome to Profile !</h1>
+
+    <div class = "profile-conatiner">
+        <h2>User Information</h2>
+        <p>Username: <%= username %></p>
+        <p>Email: <%= email %></p>
+        <p>Admin Status: <%= isAdmin ? "Yes" : "No" %></p>
+    </div>
+
+    <form action="/profile/edit" method="get">
+        <button type="submit">Edit Profile</button>
+    </form>
+
+    <form action="/habit" method="get">
+        <button type="submit">Go to habit</button>
+    </form>
+
+    
+    
+
+</body>
+</html>
