@@ -105,19 +105,92 @@ router.get('/habit/:id/edit', authenticateToken, async (req, res) => {
         }
 
         res.send(`
-          <h1>Edit Habit</h1>
+          <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #87CEFA;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        form {
+            background: white;
+            max-width: 450px;
+            margin: 20px auto;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border: solid 0.5px black;
+            text-align: left;
+        }
+
+        .input-container {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0560c2;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        </style>
+            <h1>Edit Habit</h1>
             <form action="/habit/${habit.id}?_method=PUT" method="POST">
-                <label for="title">Name:</label>
-                <input type="text" name="name" value="${habit.name}" required /><br><br>
+            
+            <div class="input-container">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" value="${habit.name}" required />
+            </div>
 
-                <label for="description">Description:</label>
-                <textarea name="description" rows="5" cols="40" required>${habit.description}</textarea><br><br>
+            <div class="input-container">
+               <label for="description">Description:</label>
+               <textarea id="description" name="description" rows="5" required>${habit.description}</textarea>
+            </div>
 
-                <label for="author">Weekly Status:</label>
-                <input type="checkbox" name="weeklyStatus" value="true" ${habit.weeklyStatus ? 'checked' : ''} /><br><br>
-
+            <div class="checkbox-container">
+              <label for="weeklyStatus">Weekly Status:</label>
+              <input type="checkbox" name="weeklyStatus" value="true" ${habit.weeklyStatus ? 'checked' : ''} />
+            </div>
                 <button type="submit">Update</button>
-            </form> 
+            </form>
         `);
     } catch (error) {
         res.status(500).send('Error retrieving habit');
@@ -139,6 +212,12 @@ router.put('/habit/:id', authenticateToken, async (req, res) => {
 
         const updatedHabit = await Habit.findById(id);
         res.status(200).send(`
+            <style>
+            body{ background-color: #007bff; justify-self: center; }
+            p{font-size: 25px;}
+            button{ background:rgb(200, 0, 255); color: white; border: none; padding: 10px 15px; font-size: 20px; border-radius: 5px; cursor: pointer; }
+            a {color: black; }
+            </style> 
             <h1>Habit Updated Successfully!</h1>
             <p>Name: ${habit.name}</p>
             <p>Description: ${habit.description}</p>
@@ -152,9 +231,6 @@ router.put('/habit/:id', authenticateToken, async (req, res) => {
     }
     
 });
-
-
-
 
 router.post('/habit', authenticateToken, async (req, res) =>{
     try{
@@ -184,12 +260,44 @@ router.post('/habit', authenticateToken, async (req, res) =>{
           <button type="submit">Get</button>
            </form>
             `
-        )
+        );
 
     }catch(error){
         res.status(500).json({message: error.message});
     }
 
+});
+
+router.delete('/habit/:id', authenticateToken, async (req, res) => {
+
+    try{
+        const {id} = req.params;
+        const habit = await Task.findByIdAndDelete(id); 
+
+        if(!habit){
+            return res.status(400).json({message: "Habit not found"});
+        }
+
+        res.status(200).send(`
+        <style>
+            body{ background-color: #007bff; justify-self: center; }
+            p{font-size: 25px;}
+            button{ background:rgb(200, 0, 255); color: white; border: none; padding: 10px 15px; font-size: 20px; border-radius: 5px; cursor: pointer; }
+            a {color: black; }
+        </style> 
+          <h1>Habit Deleted Successfully!</h1>
+          <p>Id: ${habit.id}</p>
+          <p>Name: ${habit.name}</p>
+          <p>Description: ${habit.description}</p>
+          <p>Weekly Status: ${habit.weeklyStatus ? 'Yes' : 'No'}</p>
+
+        <form action="/habit" method="get">
+          <button type="submit">Get</button>
+        </form>
+        `);
+    }catch(error){
+        res.status(500).json({message: error.message,});
+    }
 });
 
 

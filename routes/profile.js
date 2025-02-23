@@ -27,9 +27,6 @@ router.get('/profile/edit', authenticateToken, async (req, res) => {
                 <label for="email">Email:</label>
                 <input type="text" name="email" value="${user.email}" required /><br><br>
         
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="Enter new password"><br><br>
-        
                 <label for="isAdmin">Admin:</label>
                 <input type="checkbox" id="isAdmin" name="isAdmin" ${user.isAdmin ? 'checked' : ''}><br><br>
         
@@ -44,16 +41,12 @@ router.get('/profile/edit', authenticateToken, async (req, res) => {
 router.put('/profile', authenticateToken, async (req, res)=>{
     try{
         const userId = req.user.userId;
-        const {username, email, password} = req.body;
+        const {username, email} = req.body;
         let {isAdmin} = req.body;
 
         isAdmin = isAdmin === "on";
-
-        if (password) {
-            password = await bcrypt.hash(password, 10);
-        }
         
-        const user = await User.findByIdAndUpdate(userId, { username, email, password, isAdmin}, { new: true });
+        const user = await User.findByIdAndUpdate(userId, { username, email, isAdmin}, { new: true });
 
         if(!user){
             return res.status(400).json({message: "User not found"});
