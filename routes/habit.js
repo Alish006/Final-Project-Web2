@@ -272,7 +272,7 @@ router.delete('/habit/:id', authenticateToken, async (req, res) => {
 
     try{
         const {id} = req.params;
-        const habit = await Task.findByIdAndDelete(id); 
+        const habit = await Habit.findByIdAndDelete(id); 
 
         if(!habit){
             return res.status(400).json({message: "Habit not found"});
