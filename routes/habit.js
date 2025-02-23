@@ -45,16 +45,23 @@ router.get('/habit', authenticateToken, async (req, res)=>{
         res.status(200).send(
             `
             <style>
-            body{ background-color: #007bff; justify-self: center; }
-            h1{ text-align: center; }
+            body { background-color: #007bff; justify-self: center; }
+            h1 { text-align: center; }
             button { background: rgb(200, 0, 255);; color: white; border: none; padding: 10px 15px; font-size: 20px; border-radius: 5px; cursor: pointer; }
             </style>
 
             <h1>Habits</h1>
               ${habitHTML}
+
+            
             <form action="/habit/post" method="get">
                   <button type="submit">Create</button>
             </form>
+
+            <form action="/profile" method="get">
+                  <button type="submit">Go to Profile</button>
+            </form>
+
             `
         );
         

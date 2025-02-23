@@ -2,12 +2,22 @@ const express = require('express');
 const router = express.Router();
 const User = require('../model/users.js');
 const { authenticateToken } = require('../middleware/authenticationVerify.js');
+const jwt = require('jsonwebtoken');
 
 
-router.get('/profile', authenticateToken, (req, res)=>{
-    res.render('profile.ejs');
+router.get('/profile', authenticateToken, async (req, res)=>{
+    try {
+        const user = await User.findById(req.user.userId);
+
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        res.render('profile.ejs', {user: user});
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
-
 
 router.get('/profile/edit', authenticateToken, async (req, res) => {
     try {
@@ -51,6 +61,15 @@ router.put('/profile', authenticateToken, async (req, res)=>{
         if(!user){
             return res.status(400).json({message: "User not found"});
         }
+
+        const newToken = jwt.sign(
+            { userId: user._id, isAdmin: user.isAdmin },
+            process.env.ACCESS_TOKEN_SECRET,
+            { expiresIn: "1h" }
+        );
+
+        res.cookie("token", newToken, { httpOnly: true });
+
 
         res.status(200).redirect('/profile');
 

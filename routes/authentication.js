@@ -64,7 +64,7 @@ router.post('/login',  async (req, res)=> {
     req.session.email = user.email;
     req.session.isAdmin = user.isAdmin;
 
-    res.cookie("token", accessToken, { httpOnly: true, secure: false });
+    res.cookie("token", accessToken, { httpOnly: true});
 
     res.redirect('/profile');
 
