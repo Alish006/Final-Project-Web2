@@ -59,7 +59,7 @@ router.post('/login',  async (req, res)=> {
         return res.status(400).redirect('/login');
     }
 
-    const accessToken = jwt.sign({userId: user.id, isAdmin: user.isAdmin}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+    const accessToken = jwt.sign({userId: user.id, isAdmin: user.isAdmin, username: user.username, email: user.email}, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
     req.session.username = user.username;
     req.session.email = user.email;
     req.session.isAdmin = user.isAdmin;
