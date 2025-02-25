@@ -40,7 +40,7 @@ npm start
 5. Open your browser and navigate to http://localhost:3000
 
 
-API Documentation
+## API Documentation
 
 
 Authentication
