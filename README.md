@@ -58,6 +58,7 @@ POST /login: Log in an existing user
 
 Request Body:
 {
+  "username": "string",
   "email": "string",
   "password": "string"
 }
@@ -78,7 +79,6 @@ Request Body:
 {
   "name": "string",
   "description": "string",
-  "weeklyStatus": "boolean"
 }
 Response: HTML page confirming habit creation
 
