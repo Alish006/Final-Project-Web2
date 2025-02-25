@@ -24,7 +24,7 @@ This is a Habit Tracker web application built using Node.js, Express, MongoDB, a
 1. Clone the repository:
    ```bash
    git clone https://github.com/Alish006/Final-Project-Web2.git
-   cd habit-tracker
+   cd Final-Project-Web2
 2. Install dependencies:
 npm install
 
