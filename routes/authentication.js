@@ -64,11 +64,17 @@ router.post('/login',  async (req, res)=> {
     req.session.email = user.email;
     req.session.isAdmin = user.isAdmin;
 
-    res.cookie("token", accessToken, { httpOnly: true});
+    res.cookie('token', accessToken, { httpOnly: true});
 
     res.redirect('/profile');
 
 
+});
+
+
+router.delete('/logout', (req, res)=> {
+    res.cookie('token', ' ', {maxAge: 1});
+    res.redirect('/login');
 });
 
 

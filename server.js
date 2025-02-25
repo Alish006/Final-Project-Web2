@@ -53,8 +53,6 @@ app.use('/', habitRoutes);
 app.use('/', profileRoutes);
 
 
- 
-
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
 });
