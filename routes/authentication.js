@@ -66,7 +66,7 @@ router.post('/login',  async (req, res)=> {
 
     res.cookie('token', accessToken, { httpOnly: true});
 
-    res.status(200).redirect('/profile');
+    res.redirect('/profile');
 
 
 });
