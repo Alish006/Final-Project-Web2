@@ -40,6 +40,11 @@ npm start
 5. Open your browser and navigate to http://localhost:3000/register or http://localhost:3000/login
 
 
+## Deployment
+
+https://final-project-web2.onrender.com
+
+
 ## API Documentation
 
 Authentication
