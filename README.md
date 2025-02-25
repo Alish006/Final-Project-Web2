@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a Habit Tracker web application built using Node.js, Express, MongoDB, and EJS for server-side rendering. The application allows users to register, log in, and manage their habits. Users can create, edit, delete, and view their habits. Additionally, there is an admin feature that allows certain users to delete habits
+This is a Habit Tracker web application built using Node.js, Express, MongoDB, and EJS for server-side rendering. The application allows users to register, log in, and manage their habits. Users can create, edit, delete, and view their habits. Additionally, there is an admin feature that allows certain users to delete habits.
 
 ## Features
 
@@ -41,7 +41,6 @@ npm start
 
 
 ## API Documentation
-
 
 Authentication
 POST /register: Register a new user
