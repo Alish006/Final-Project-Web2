@@ -29,10 +29,10 @@ This is a Habit Tracker web application built using Node.js, Express, MongoDB, a
 npm install
 
 3. Create a .env file in the root directory and add the following environment variables:
-URL=mongodb+srv://AlisherSamat:24atahud@cluster0.4f8pz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+URL=mongodb+srv://AlisherSamat:your_password@cluster0.4f8pz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 PORT=3000
-SECRET_KEY_SESSISON=secret_key
-ACCESS_TOKEN_SECRET=my_secret_key
+SECRET_KEY_SESSISON=******
+ACCESS_TOKEN_SECRET=******
 
 4. Start the server:
 npm start 
