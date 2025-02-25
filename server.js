@@ -51,7 +51,10 @@ app.get('/', (req, res)=>{
     res.render('register.ejs');
 });
 
-app.use(flash());
+app.use((req, res, next) => {
+    res.locals.messages = req.flash(); 
+    next();
+});
 app.use('/', authenticationRoutes);
 app.use('/', habitRoutes);
 app.use('/', profileRoutes);
