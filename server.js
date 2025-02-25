@@ -48,13 +48,10 @@ app.use((req, res, next) => {
 
 
 app.get('/', (req, res)=>{
-    res.render('register.ejs');
-});
+    res.sendFile(__dirname + '/index.html');
+})
 
-app.use((req, res, next) => {
-    res.locals.messages = req.flash(); 
-    next();
-});
+app.use(flash());
 app.use('/', authenticationRoutes);
 app.use('/', habitRoutes);
 app.use('/', profileRoutes);
