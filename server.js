@@ -47,6 +47,10 @@ app.use((req, res, next) => {
 });
 
 
+app.get('/', (req, res)=>{
+    res.render('register.ejs');
+});
+
 app.use(flash());
 app.use('/', authenticationRoutes);
 app.use('/', habitRoutes);

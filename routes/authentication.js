@@ -73,8 +73,12 @@ router.post('/login',  async (req, res)=> {
 
 
 router.delete('/logout', (req, res)=> {
+    try{
     res.cookie('token', ' ', {maxAge: 1});
-    res.redirect('/login');
+    res.status(200).redirect('/login');
+    }catch(error){
+        res.status(500).json({message: error.message});
+    }
 });
 
 
