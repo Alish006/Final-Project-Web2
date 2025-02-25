@@ -221,16 +221,27 @@ router.put('/habit/:id', authenticateToken, async (req, res) => {
         res.status(200).send(`
             <style>
             body{ background-color: #007bff; justify-self: center; }
+
             p{font-size: 25px;}
+
             button{ background:rgb(200, 0, 255); color: white; border: none; padding: 10px 15px; font-size: 20px; border-radius: 5px; cursor: pointer; }
             a {color: black; }
+        button:hover {
+            background-color: rgb(143, 4, 182) ;
+        }
             </style> 
             <h1>Habit Updated Successfully!</h1>
             <p>Name: ${habit.name}</p>
             <p>Description: ${habit.description}</p>
             <p>Weekly Status: ${habit.weeklyStatus ? 'Yes' : 'No'}</p>
             <br>
-            <a href="/habit">Back to Habits</a>
+            
+            <form action="/habit" method="GET">
+
+            <button type="submit">Go To Habits</button>
+
+            </form>
+
         `)
 
     }catch(error){

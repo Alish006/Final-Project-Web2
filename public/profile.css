@@ -1,9 +1,15 @@
+body{ 
+    background-color: #87CEFA; 
+    justify-self: center; 
+}
+
 h1{
     text-align: center;
     font-size: 40px;
 }
 
 .profile-conatiner{
+    background-color: white;
     justify-self: center;
     text-align: center;
     border: solid 1px black;
@@ -28,7 +34,7 @@ form{
 form button{
     font-size: 30px;
     color: white;
-    background-color: #007bff;
+    background-color: rgb(200, 0, 255);
     padding: 10px;
     cursor: pointer;
     border: none;
