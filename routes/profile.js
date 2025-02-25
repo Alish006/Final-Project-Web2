@@ -138,7 +138,7 @@ router.put('/profile', authenticateToken, async (req, res)=>{
         }
 
         const newToken = jwt.sign(
-            { userId: user._id, isAdmin: user.isAdmin },
+            { userId: user._id, isAdmin: user.isAdmin, username: user.username, email: user.email },
             process.env.ACCESS_TOKEN_SECRET,
             { expiresIn: "1h" }
         );
