@@ -29,15 +29,15 @@ This is a Habit Tracker web application built using Node.js, Express, MongoDB, a
 npm install
 
 3. Create a .env file in the root directory and add the following environment variables:
-URL=mongodb://localhost:27017/habit-tracker
+URL=mongodb://localhost:27017/UserAndHabit 
 PORT=3000
-SECRET_KEY_SESSISON=your-secret-key
-ACCESS_TOKEN_SECRET=your-access-token-secret
+SECRET_KEY_SESSISON=secret_key
+ACCESS_TOKEN_SECRET=my_secret_key
 
 4. Start the server:
 npm start 
 
-5. Open your browser and navigate to http://localhost:3000
+5. Open your browser and navigate to http://localhost:3000/register or http://localhost:3000/login
 
 
 ## API Documentation
